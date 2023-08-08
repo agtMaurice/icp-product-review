@@ -1,0 +1,20 @@
+type Product = record {
+  id : text;
+  URL : text;
+  updated_at : opt nat64;
+  Ratings : vec float64;
+  name : text;
+  description : text;
+  created_at : nat64;
+};
+type ProductPayload = record { URL : text; name : text; description : text };
+type _AzleResult = variant { Ok : Product; Err : text };
+type _AzleResult_1 = variant { Ok : vec Product; Err : text };
+service : () -> {
+  addProduct : (ProductPayload) -> (_AzleResult);
+  deleteProduct : (text) -> (_AzleResult);
+  getProduct : (text) -> (_AzleResult) query;
+  getProducts : () -> (_AzleResult_1) query;
+  rateProduct : (text, float64) -> (_AzleResult);
+  updateProduct : (text, ProductPayload) -> (_AzleResult);
+}
