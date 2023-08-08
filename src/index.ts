@@ -83,12 +83,14 @@ export function addProduct(payload: ProductPayload): Result<Product, string> {
 }
 
 // to validate the product rating to make sure it falls beetween the accepted boundries.
+
 function validateRating(rating: number): void {
     if (rating < 1 || rating > 5) {
         throw new Error("Rating should be an integer between 1 and 5.");
     }
 }
 
+$update;
 export function calculateAverageRating(id: string){
 
     return match(productStorage.get(id), {
