@@ -9,12 +9,14 @@ type Product = record {
 };
 type ProductPayload = record { URL : text; name : text; description : text };
 type _AzleResult = variant { Ok : Product; Err : text };
-type _AzleResult_1 = variant { Ok : vec Product; Err : text };
+type _AzleResult_1 = variant { Ok : float64; Err : text };
+type _AzleResult_2 = variant { Ok : vec Product; Err : text };
 service : () -> {
   addProduct : (ProductPayload) -> (_AzleResult);
+  calculateAverageRating : (text) -> (_AzleResult_1);
   deleteProduct : (text) -> (_AzleResult);
   getProduct : (text) -> (_AzleResult) query;
-  getProducts : () -> (_AzleResult_1) query;
+  getProducts : () -> (_AzleResult_2) query;
   rateProduct : (text, float64) -> (_AzleResult);
   updateProduct : (text, ProductPayload) -> (_AzleResult);
 }
